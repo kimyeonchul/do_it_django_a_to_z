@@ -1,16 +1,58 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap"
+      rel="stylesheet"
+    />
     <title>Blog</title>
-</head>
-<body>
-    <h1>Blog</h1>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      a {
+        text-decoration: none;
+      }
+      h1 {
+        margin: 0;
+      }
+      .index-title {
+        width: 100%;
+        background-color: #056cf2;
+        margin: 0;
+        padding: 20px 0px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        font-size: 50px;
+        color: white;
+        font-family: "Nanum Brush Script", cursive;
+      }
+      .post-detail-title {
+        color: black;
+      }
+      .post-detail-title:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      <a class="index-title" href="/blog/">Blog</a>
+    </h1>
     {% for p in post_list %}
-    <hr/>
-    <h2><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></h2>
+    <hr />
+    <h2>
+      <a class="post-detail-title" href="{{ p.get_absolute_url }}"
+        >{{ p.title }}</a
+      >
+    </h2>
     <h4>{{ p.created_at }}</h4>
     <p>{{ p.content }}</p>
     {% endfor %}
-</body>
+  </body>
 </html>
