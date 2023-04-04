@@ -23,7 +23,7 @@ class Post(models.Model):
     # author
 
     author = models.ForeignKey(User, null=True,on_delete=models.SET_NULL)
-
+    category = models.ForeignKey(Category,null=True,blank=True,on_delete=models.SET_NULL)
     def __str__(self):
         # return self.title
         return f'[{self.pk}]{self.title} :: {self.author}'
