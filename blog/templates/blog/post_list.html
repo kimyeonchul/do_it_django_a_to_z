@@ -1,7 +1,20 @@
 {% extends 'blog/base.html' %}
 
 {% block main_area %}
-                <h1>Blog</h1>
+    {% if user.is_authenticated %}
+        {% if user.is_superuser or user.is_staff %}
+            <a class="btn btn-info btn-sm float-right" href="/blog/create_post">
+            <i class="fas fa-pen"></i>&nbsp;&nbsp;New Post
+            </a>
+            {% endif %}
+    {% endif %}
+                <h1>
+                Blog
+                    {% if category %} postings with Category {{ category }}
+                    {% endif %}
+                {% if tag %} postings with tag {{ tag }}
+                {% endif %}
+                </h1>
 
                 {% for p in post_list %}
                 <!-- Blog Post -->

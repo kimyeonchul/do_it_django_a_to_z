@@ -16,7 +16,10 @@
         <hr>
 
         <!-- Date/Time -->
-        <p>Posted on {{ post.created_at }}</p>
+    <p>Posted on {{ post.created_at }}</p>
+    {% if user.is_authenticated and user == post.author %}
+    <button class="btn btn-primary float-right"><a href="/blog/update_post/{{ post.pk }}">Edit Post</a></button>
+    {% endif %}
 
         <hr>
 
@@ -29,20 +32,20 @@
 
         <hr>
 
-      {% if post.tag.exists %}
-          <br/>
-          <i class="fas fa-tags"></i>
-          {% for tag in post.tag.iterator %}
-              <a href={{ tag.get_absolute_url }}>{{ tag }}</a>
-          {% endfor %}
-      {% endif %}
-
         <!-- Post Content -->
         <p>{{ post.content }}</p>
         <hr>
       {% if post.file_upload %}
           <a href="{{ post.file_upload.url }}" class="btn btn-outline-dark" role="button" download>Downloads</a>
             {{ post.get_file_name }}
+      {% endif %}
+
+          {% if post.tag.exists %}
+          <br/>
+          <i class="fas fa-tags"></i>
+          {% for tag in post.tag.iterator %}
+              <a href={{ tag.get_absolute_url }}>{{ tag }}</a>
+          {% endfor %}
       {% endif %}
 
         <!-- Comments Form -->
