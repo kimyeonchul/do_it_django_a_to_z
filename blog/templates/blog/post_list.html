@@ -26,7 +26,7 @@
                 {% endif %}
                     <div class="card-body">
                         <h2 class="card-title">{{ p.title}}</h2>
-                        <p class="card-text">{{ p.content | truncatewords:45 }}</p>
+                        <p class="card-text">{{ p.get_content_markdown | truncatewords_html:45 | safe}}</p>
                         <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
                     </div>
                     <div class="card-footer text-muted">
